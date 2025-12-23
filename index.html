@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>🎁 Для тебе</title>
+  <style>
+    :root{
+      --bg1:#0b1020;
+      --bg2:#1a0b2e;
+      --card:rgba(255,255,255,.08);
+      --card2:rgba(255,255,255,.06);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --glow:rgba(255, 220, 120, .55);
+      --accent:#ffd37a;
+      --accent2:#b7ffdd;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 15%, rgba(255,211,122,.14), transparent 60%),
+        radial-gradient(900px 700px at 80% 25%, rgba(183,255,221,.10), transparent 55%),
+        radial-gradient(1000px 900px at 50% 90%, rgba(173,120,255,.10), transparent 60%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    /* subtle falling sparkles */
+    .sparkle{
+      position:fixed; inset:-10vh 0 0 0;
+      pointer-events:none;
+      background:
+        radial-gradient(2px 2px at 10% 10%, rgba(255,255,255,.9), transparent 60%),
+        radial-gradient(2px 2px at 30% 40%, rgba(255,255,255,.8), transparent 60%),
+        radial-gradient(1.5px 1.5px at 70% 20%, rgba(255,255,255,.7), transparent 60%),
+        radial-gradient(2px 2px at 85% 55%, rgba(255,255,255,.6), transparent 60%),
+        radial-gradient(1.5px 1.5px at 55% 75%, rgba(255,255,255,.7), transparent 60%);
+      opacity:.35;
+      filter: blur(.2px);
+      animation: drift 9s linear infinite;
+      transform: translateY(-12vh);
+    }
+    @keyframes drift{
+      to{ transform: translateY(12vh); }
+    }
+
+    .wrap{
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding: 28px 16px;
+    }
+    .card{
+      width:min(820px, 100%);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 22px;
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.35),
+        0 0 0 1px rgba(255,255,255,.05) inset;
+      backdrop-filter: blur(10px);
+      padding: 26px 22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .ribbon{
+      position:absolute;
+      top:18px; right:-52px;
+      transform: rotate(35deg);
+      background: linear-gradient(90deg, rgba(255,211,122,.95), rgba(183,255,221,.9));
+      color: rgba(0,0,0,.78);
+      font-weight: 700;
+      letter-spacing:.5px;
+      padding: 10px 70px;
+      border-radius: 999px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    .top{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom: 14px;
+    }
+    .badge{
+      width:56px; height:56px;
+      border-radius: 16px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 0 22px rgba(255,211,122,.18);
+      font-size: 28px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(22px, 3.2vw, 34px);
+      line-height: 1.08;
+    }
+    .subtitle{
+      margin:6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      margin: 18px 0;
+    }
+
+    .message{
+      font-size: 16px;
+      line-height: 1.65;
+      color: rgba(255,255,255,.88);
+      margin:0 0 16px;
+    }
+
+    .codebox{
+      margin-top: 10px;
+      padding: 18px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.16);
+      background:
+        radial-gradient(600px 120px at 20% 0%, rgba(255,211,122,.18), transparent 60%),
+        radial-gradient(520px 140px at 85% 100%, rgba(183,255,221,.12), transparent 55%),
+        rgba(0,0,0,.18);
+      position:relative;
+    }
+    .label{
+      font-size: 12px;
+      letter-spacing:.14em;
+      color: rgba(255,255,255,.70);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: clamp(18px, 3vw, 26px);
+      font-weight: 800;
+      letter-spacing: .12em;
+      padding: 14px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      text-shadow: 0 0 22px var(--glow);
+      user-select: all;
+      overflow:auto;
+      white-space: nowrap;
+    }
+    .hint{
+      margin: 10px 0 0;
+      color: rgba(255,255,255,.70);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .footer{
+      margin-top: 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:space-between;
+      align-items:center;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .dot{
+      width:8px;height:8px;border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(255,211,122,.5);
+    }
+
+    /* optional: copy button (no click required to reveal code) */
+    button{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.88);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover{ background: rgba(255,255,255,.12); }
+    .actions{
+      margin-top: 12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sparkle"></div>
+
+  <main class="wrap">
+    <section class="card" role="article" aria-label="Подарунок">
+      <div class="ribbon">тільки для тебе</div>
+
+      <header class="top">
+        <div class="badge">🎄</div>
+        <div>
+          <h1>Знайдений подарунок активовано ✨</h1>
+          <p class="subtitle">Це маленька сторінка, яка існує тільки для тебе. Без кліків, без квестів — просто сюрприз.</p>
+        </div>
+      </header>
+
+      <div class="divider"></div>
+
+      <p class="message">
+        Привіт, кохана ❤️<br/>
+        Під ялинкою ти знайшла ключ до подарунка. Ось твій промокод — використовуй коли захочеш.
+      </p>
+
+      <div class="codebox">
+        <div class="label">Твій промокод</div>
+        <div class="code" id="promo">PROMO_CODE_HERE</div>
+        <p class="hint">Порада: просто натисни й потримай на коді — він виділиться, і можна копіювати.</p>
+
+        <div class="actions">
+          <button id="copyBtn" type="button">Скопіювати код</button>
+          <span id="copyMsg" class="hint" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span class="pill"><span class="dot"></span> Секретний лінк ≈ ключ</span>
+        <span>З любов’ю. 🎁</span>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Copy button is optional; not required to see anything.
+    const btn = document.getElementById('copyBtn');
+    const promo = document.getElementById('promo');
+    const msg = document.getElementById('copyMsg');
+
+    btn.addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(promo.textContent.trim());
+        msg.textContent = 'Готово: промокод у буфері обміну ✅';
+        setTimeout(()=> msg.textContent = '', 3000);
+      }catch(e){
+        msg.textContent = 'Не вийшло автоматично. Виділи код вручну і скопіюй 🙂';
+        setTimeout(()=> msg.textContent = '', 4500);
+      }
+    });
+  </script>
+</body>
+</html>
